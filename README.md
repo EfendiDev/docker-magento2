@@ -1,7 +1,6 @@
-# mageshopfinder
+# Docker Magento2
 Welcome Magento 2 Community Edition installation with Docker.
 Project contains Nginx, PHP7 and MySQL environment configuration.
-Also Shopfinder module inside the package.
 
 # Setup
 

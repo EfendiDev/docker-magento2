@@ -23,4 +23,4 @@ PS: If you need to access containers via ssh, use these commands:
   - `docker exec -it magento2 /bin/bash` for nginx container
   - `docker exec -it magento2_mysql /bin/bash` for mysql container
   
-Enjoy it!
+Please feel free to contribute the project and enjoy it!

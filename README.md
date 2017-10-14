@@ -17,7 +17,7 @@ Project contains Nginx, PHP7 and MySQL environment configuration.
   - OR you can create .env file to define all (Simply copy example.env to .env and change its content)
 
 4) Build docker image, run this command: `docker build -t magento2 .`
-5) Stand up containers using this command: `docker-compose up magento2`
+5) Stand up containers using this command: `docker-compose up -d`
 
 PS: If you need to access containers via ssh, use these commands: 
   - `docker exec -it magento2 /bin/bash` for nginx container

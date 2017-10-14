@@ -12,11 +12,10 @@ magento2:
   links:
     - magento2_mysql
   volumes:
-    - ./config-files/nginx/pinfo.php:/data/project/magento2/pinfo.php
     - ./config-files/init.sh:/init.sh
     - ./config-files/nginx/vhost.conf:/etc/nginx/sites-enabled/default
     - ./config-files/nginx/php.ini:/etc/php/7.0/fpm/php.ini
-    - ../:/data/project
+    - ../:/data/projects
     - ../var/log/nginx:/var/log/nginx
     - ../var/log/php-fpm:/var/log/php-fpm
     - /root/.bash_history

@@ -1,22 +1,35 @@
 #!/bin/bash
 
-/usr/sbin/php-fpm7.0 -R &
-/usr/sbin/nginx -g "daemon off;" &
-/usr/bin/memcached -u root
 echo "Welcome on Board!"
 
-file="/data/projects/docker-magento2/.magento2_installed"
+if [ "$MAGENTO_BASE_URL" = "" ]
+then
+	echo "MAGENTO_BASE_URL is missing!"
+	echo "Please set it using this command:"
+	echo "export MAGENTO_BASE_URL=http://magento2.local"
+	echo "Then re-try it please!"
+	exit
+fi
+
+file="/data/project/.magento2_installed3"
 
 if [ -f "$file" ]
 then
-	php /data/projects/docker-magento2/magento2/bin/magento setup:store-config:set --base-url="http://${MAGENTO_BASE_URL}"
-	php /data/projects/docker-magento2/magento2/bin/magento cache:flush
+	php /data/project/magento2/bin/magento setup:store-config:set --base-url="${MAGENTO_BASE_URL}"
+	php /data/project/magento2/bin/magento cache:flush
 else
-        composer create-project --repository-url=https://${MAGENTO_PUBLIC_KEY}:${MAGENTO_PRIVATE_KEY}@repo.magento.com/ magento/project-community-edition /data/projects/docker-magento2/magento2
-	if php /data/projects/docker-magento2/magento2/bin/magento setup:install --base-url="http://${MAGENTO_BASE_URL}/" --db-host="magento2_mysql" --db-name="magento2" --db-user="root" --admin-firstname="admin" --admin-lastname="admin" --admin-email="user@example.com" --admin-user="admin" --admin-password="Admin123*!" --language="en_US" --currency="USD" --timezone="Europe/Istanbul" --use-rewrites="1" --backend-frontname="admin" ; then
-	    echo "" > /data/projects/docker-magento2/.magento2_installed
-	    echo "Magento 2 Community Edition successfully installed."
-	else
-	    echo "Oops, I need help! ¯\_(ツ)_/¯ "
-	fi
+    echo "Magento 2 Community Edition successfully installed."
+    cd /data/project/magento2
+    composer require efendi/shopfinder dev-master
+    composer install
+    php /data/project/magento2/bin/magento setup:upgrade
+    php /data/project/magento2/bin/magento cache:flush
 fi
+
+echo "Magento admin url: $MAGENTO_BASE_URL/admin"
+echo "Magento admin username: admin"
+echo "Magento admin password: admin123"
+
+/usr/sbin/php-fpm7.0 -R &
+/usr/sbin/nginx -g "daemon off;" &
+/usr/bin/memcached -u root

@@ -1,13 +1,11 @@
 magento2:
   container_name: magento2
-  image: magento2
+  build: .
   ports:
     - 80:80
   environment:
     APPLICATION_ENV: development
     MAGENTO_BASE_URL: ${MAGENTO_BASE_URL}
-    MAGENTO_PUBLIC_KEY: ${MAGENTO_PUBLIC_KEY}
-    MAGENTO_PRIVATE_KEY: ${MAGENTO_PRIVATE_KEY}
   command: sh /init.sh
   links:
     - magento2_mysql
@@ -15,9 +13,10 @@ magento2:
     - ./config-files/init.sh:/init.sh
     - ./config-files/nginx/vhost.conf:/etc/nginx/sites-enabled/default
     - ./config-files/nginx/php.ini:/etc/php/7.0/fpm/php.ini
-    - ../:/data/projects
-    - ../var/log/nginx:/var/log/nginx
-    - ../var/log/php-fpm:/var/log/php-fpm
+    - ./:/data/project
+    - ./config-files/auth.json:/root/.composer/auth.json
+    - ./var/log/nginx:/var/log/nginx
+    - ./var/log/php-fpm:/var/log/php-fpm
     - /root/.bash_history
 
 magento2_mysql:

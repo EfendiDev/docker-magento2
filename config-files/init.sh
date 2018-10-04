@@ -26,6 +26,7 @@ else
         composer install
         php /data/project/magento2/bin/magento setup:upgrade
         php /data/project/magento2/bin/magento cache:flus
+	php /data/project/bin/magento cron:install --force
 	chown -R :www-data /data/project/magento2
 	chmod -R 777 /data/project/magento2/var
 	chmod -R 777 /data/project/magento2/pub

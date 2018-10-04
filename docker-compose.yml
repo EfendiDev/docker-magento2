@@ -21,7 +21,7 @@ magento2:
 
 magento2_mysql:
   container_name: magento2_mysql
-  image: mysql
+  image: mysql:5.7
   ports:
     - 3306:3306
   environment:

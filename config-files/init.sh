@@ -23,7 +23,6 @@ else
         echo "" > /data/project/.magento2_installed
         echo "Magento 2 Community Edition successfully installed."
         cd /data/project/magento2
-        composer require efendi/shopfinder dev-master
         composer install
         php /data/project/magento2/bin/magento setup:upgrade
         php /data/project/magento2/bin/magento cache:flus
@@ -37,6 +36,6 @@ echo "Magento admin url: $MAGENTO_BASE_URL/admin"
 echo "Magento admin username: admin"
 echo "Magento admin password: admin123"
 
-/usr/sbin/php-fpm7.0 -R &
+/usr/sbin/php-fpm7.1 -R &
 /usr/sbin/nginx -g "daemon off;" &
 /usr/bin/memcached -u root

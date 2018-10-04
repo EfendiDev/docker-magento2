@@ -8,8 +8,8 @@ RUN apt-get update \
     && LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y \
     && apt-get update \
     && apt-get -y install memcached \
-    && apt-get -y install nginx php7.0-fpm php7.0-mysql php7.0-gd php7.0-cli php7.0-mcrypt php7.0-imagick php7.0-curl \
-    && apt-get -y install php7.0-memcached php7.0-memcache libssh2-1-dev php7.0-ssh2 libfcgi0ldbl varnish git \
-    && apt-get -y install php7.0-mbstring php7.0-xml php7.0-apcu php7.0-intl php7.0-zip php7.0-iconv php7.0-soap \
-    && apt-get -y install composer nano curl \
+    && apt-get -y install nginx php7.1-fpm php7.1-mysql php7.1-gd php7.1-cli php7.1-mcrypt php7.1-imagick php7.1-curl \
+    && apt-get -y install php7.1-memcached php7.1-memcache libssh2-1-dev php7.1-ssh2 libfcgi0ldbl varnish git \
+    && apt-get -y install php7.1-mbstring php7.1-xml php7.1-apcu php7.1-intl php7.1-zip php7.1-iconv php7.1-soap \
+    && apt-get -y install php7.1-bcmath php7.1-common composer nano curl \
     && rm -r /var/lib/apt/lists/* && mkdir /run/php/
